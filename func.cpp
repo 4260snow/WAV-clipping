@@ -67,7 +67,8 @@ void write(WaveRIFF header, WaveFormat info, WaveData dataHeader, int16_t *data,
 	}
 }
 
-void new_data(int16_t** data, int size)
+// клиппирование wav файла
+void clip(int16_t** data, int size)
 {
 	for (int i = 2; i < size - 1; i++)
 	{
@@ -78,7 +79,8 @@ void new_data(int16_t** data, int size)
 	}
 }
 
-void nd(int16_t** data, int i, int size)
+// восстановление клиппированного wav файла
+void unclip(int16_t** data, int i, int size)
 {
 	int d = (*data)[i - 1] - (*data)[i - 2];
 
